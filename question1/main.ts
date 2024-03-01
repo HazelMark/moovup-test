@@ -1,4 +1,4 @@
-interface House {
+export interface House {
   name: string;
   base: Graph;
   neighbor: House[];
@@ -11,14 +11,14 @@ type Path = {
   [key: string]: string;
 };
 
-interface Graph {
+export interface Graph {
   nodes: House[];
   clearVisitor: () => void;
   getAllPaths: () => string[];
   getShortestPath(): Path;
 }
 
-class Home implements House {
+export class Home implements House {
   name: string;
   neighbor: House[];
   base: Graph;
@@ -65,7 +65,7 @@ class Home implements House {
   }
 }
 
-class Town implements Graph {
+export class Town implements Graph {
   nodes: House[];
   base: Graph;
 
@@ -111,7 +111,7 @@ class Town implements Graph {
   }
 }
 
-const createTown = () => {
+export const createTown = () => {
   let town: Town = new Town();
 
   let a: Home = new Home("a", town);
@@ -135,9 +135,3 @@ const createTown = () => {
   town.setHome(a, b, c, d, e, f, g, h);
   return town;
 };
-
-const town = createTown();
-// Question 1a.
-console.log(town.getAllPaths());
-// Question 1b.
-console.log(town.getShortestPath());
